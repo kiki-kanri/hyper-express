@@ -5,6 +5,11 @@
     "license": "MIT",
     "author": "Kartik Kumar",
     "homepage": "https://github.com/kartikk221/hyper-express#readme",
+    "files": [
+        "./index.js",
+        "./src",
+        "./types"
+    ],
     "repository": {
         "type": "git",
         "url": "git+ssh://git@github.com/kartikk221/hyper-express.git"
