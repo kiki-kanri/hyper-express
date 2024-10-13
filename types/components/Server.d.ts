@@ -24,6 +24,8 @@ export interface ServerConstructorOptions {
     };
 }
 
+export interface ServerLocals {}
+
 export type GlobalErrorHandler = (request: Request, response: Response, error: Error) => void;
 export type GlobalNotFoundHandler = (request: Request, response: Response) => void;
 
@@ -32,8 +34,19 @@ export class Server extends Router {
 
     /**
      * This object can be used to store properties/references local to this Server instance.
+     *
+     * You can extend the ServerLocals type using 'declare module' to add custom properties.
+     *
+     * @example
+     * ```typescript
+     * declare module 'hyper-express' {
+     *   interface ServerLocals {
+     *     yourCustomProperty: YourCustomType;
+     *   }
+     * }
+     * ```
      */
-    locals: Object;
+    locals: ServerLocals;
 
     /* Server Methods */
 
