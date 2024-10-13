@@ -20,9 +20,7 @@ export interface CookieOptions {
 
 export interface DefaultResponseLocals {}
 
-export class Response<
-    ResponseOptions extends { Locals?: DefaultResponseLocals; Response?: any } = { Locals: DefaultResponseLocals }
-> extends Writable {
+export class Response<Locals = DefaultResponseLocals> extends Writable {
     /**
      * Underlying raw lazy initialized writable stream.
      */
@@ -42,7 +40,7 @@ export class Response<
      * @param {Function} handler
      * @returns {Response} Response (Chainable)
      */
-    atomic(handler: () => void): Response<ResponseOptions>;
+    atomic(handler: () => void): Response;
 
     /**
      * This method is used to set a custom response code.
@@ -51,7 +49,7 @@ export class Response<
      * @param {String=} message Example: response.status(403, 'Forbidden')
      * @returns {Response} Response (Chainable)
      */
-    status(code: number, message?: string): Response<ResponseOptions>;
+    status(code: number, message?: string): Response;
 
     /**
      * This method is used to set the response content type header
@@ -60,7 +58,7 @@ export class Response<
      * @param {String} mime_type Mime type
      * @returns {Response} Response (Chainable)
      */
-    type(mime_type: string): Response<ResponseOptions>;
+    type(mime_type: string): Response;
 
     /**
      * This method can be used to write a response header and supports chaining.
@@ -70,7 +68,7 @@ export class Response<
      * @param {Boolean=} overwrite If true, overwrites existing header value with same name
      * @returns {Response} Response (Chainable)
      */
-    header(name: string, value: string | Array<string>, overwrite?: boolean): Response<ResponseOptions>;
+    header(name: string, value: string | Array<string>, overwrite?: boolean): Response;
 
     /**
      * This method is used to write a cookie to incoming request.
@@ -89,7 +87,7 @@ export class Response<
         expiry?: number,
         options?: CookieOptions,
         sign_cookie?: boolean
-    ): Response<ResponseOptions>;
+    ): Response;
 
     /**
      * This method is used to upgrade an incoming upgrade HTTP request to a Websocket connection.
@@ -112,7 +110,7 @@ export class Response<
      * @param {String|Buffer|ArrayBuffer} body Optional
      * @returns {Boolean} 'false' signifies that the result was not sent due to built up backpressure.
      */
-    send(body?: SendableData, close_connection?: boolean): Response<ResponseOptions>;
+    send(body?: SendableData, close_connection?: boolean): Response;
 
     /**
      * This method is used to pipe a readable stream as response body and send response.
@@ -144,7 +142,7 @@ export class Response<
      * @param {Object} body JSON body
      * @returns {Boolean} Boolean
      */
-    json(body: ResponseOptions['Response'] extends undefined ? any : ResponseOptions['Response']): boolean;
+    json(body: any): boolean;
 
     /**
      * This method is an alias of send() method except it accepts an object
@@ -184,7 +182,7 @@ export class Response<
      * @param {String=} name
      * @returns {Response} Chainable
      */
-    attachment(path: string, name?: string): Response<ResponseOptions>;
+    attachment(path: string, name?: string): Response;
 
     /**
      * Writes appropriate attachment headers and sends file content for download on user browser.
@@ -200,7 +198,7 @@ export class Response<
      *
      * @param {Error} error
      */
-    throw(error: Error): Response<ResponseOptions>;
+    throw(error: Error): Response;
 
     /* HyperExpress Properties */
 
@@ -244,26 +242,26 @@ export class Response<
     get upgrade_socket(): uWebsockets.us_socket_context_t;
 
     /* ExpressJS Methods */
-    append(name: string, values: string | Array<string>): Response<ResponseOptions>;
-    writeHead(name: string, values: string | Array<string>): Response<ResponseOptions>;
-    setHeader(name: string, values: string | Array<string>): Response<ResponseOptions>;
+    append(name: string, values: string | Array<string>): Response;
+    writeHead(name: string, values: string | Array<string>): Response;
+    setHeader(name: string, values: string | Array<string>): Response;
     writeHeaders(headers: Object): void;
     setHeaders(headers: Object): void;
     writeHeaderValues(name: string, values: Array<string>): void;
     getHeader(name: string): string | Array<string> | void;
     getHeaders(): { [key: string]: Array<string> };
     removeHeader(name: string): void;
-    setCookie(name: string, value: string, options?: CookieOptions): Response<ResponseOptions>;
+    setCookie(name: string, value: string, options?: CookieOptions): Response;
     hasCookie(name: string): Boolean;
-    removeCookie(name: string): Response<ResponseOptions>;
-    clearCookie(name: string): Response<ResponseOptions>;
+    removeCookie(name: string): Response;
+    clearCookie(name: string): Response;
     get(name: string): string | Array<string>;
     links(links: Object): string;
-    location(path: string): Response<ResponseOptions>;
+    location(path: string): Response;
     sendFile(path: string): void;
-    sendStatus(status_code: number): Response<ResponseOptions>;
-    set(field: string | object, value?: string | Array<string>): Response<ResponseOptions> | void;
-    vary(name: string): Response<ResponseOptions>;
+    sendStatus(status_code: number): Response;
+    set(field: string | object, value?: string | Array<string>): Response | void;
+    vary(name: string): Response;
 
     /* ExpressJS Properties */
     get headersSent(): boolean;
@@ -271,5 +269,5 @@ export class Response<
     set statusCode(value: number | undefined);
     get statusMessage(): string | undefined;
     set statusMessage(value: string | undefined);
-    locals: ResponseOptions['Locals'] extends undefined ? any : ResponseOptions['Locals'];
+    locals: Locals;
 }
