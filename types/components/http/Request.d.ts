@@ -15,9 +15,7 @@ interface ParsedQs {
     [key: string]: undefined | string | string[] | ParsedQs | ParsedQs[];
 }
 
-type DefaultRequestLocals = {
-    [key: string]: any;
-};
+export interface DefaultRequestLocals {}
 
 export class Request<Locals = DefaultRequestLocals> extends Readable {
     /**

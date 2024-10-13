@@ -18,9 +18,7 @@ export interface CookieOptions {
     secret?: string;
 }
 
-type DefaultResponseLocals = {
-    [key: string]: any;
-};
+export interface DefaultResponseLocals {}
 
 export class Response<Locals = DefaultResponseLocals> extends Writable {
     /**
