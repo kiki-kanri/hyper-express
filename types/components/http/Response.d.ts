@@ -20,7 +20,9 @@ export interface CookieOptions {
 
 export interface DefaultResponseLocals {}
 
-export class Response<ResponseOptions extends { Locals ? : DefaultResponseLocals, Response? : any} = {Locals : DefaultResponseLocals}> extends Writable {
+export class Response<
+    ResponseOptions extends { Locals?: DefaultResponseLocals; Response?: any } = { Locals: DefaultResponseLocals }
+> extends Writable {
     /**
      * Underlying raw lazy initialized writable stream.
      */
@@ -269,5 +271,5 @@ export class Response<ResponseOptions extends { Locals ? : DefaultResponseLocals
     set statusCode(value: number | undefined);
     get statusMessage(): string | undefined;
     set statusMessage(value: string | undefined);
-    locals: ResponseOptions['Locals'] extends undefined ? any : ResponseOptions['Locals']
+    locals: ResponseOptions['Locals'] extends undefined ? any : ResponseOptions['Locals'];
 }

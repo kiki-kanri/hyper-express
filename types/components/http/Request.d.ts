@@ -18,10 +18,14 @@ interface ParsedQs {
 export interface DefaultRequestLocals {}
 
 export type RequestParams = {
-	[key : string] : number | string | boolean;
-}
+    [key: string]: number | string | boolean;
+};
 
-export class Request<RequestOptions extends { Locals ? : DefaultRequestLocals, Body? : any, Params? : RequestParams} = {Locals : DefaultRequestLocals}> extends Readable {
+export class Request<
+    RequestOptions extends { Locals?: DefaultRequestLocals; Body?: any; Params?: RequestParams } = {
+        Locals: DefaultRequestLocals;
+    }
+> extends Readable {
     /**
      * Underlying raw lazy initialized readable body stream.
      */
