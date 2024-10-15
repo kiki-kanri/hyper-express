@@ -745,7 +745,7 @@ class Response {
      * @returns {Boolean} Boolean
      */
     json(body) {
-        return this.type('json').send(JSON.stringify(body));
+        return this.header('content-type', 'application/json', true).send(JSON.stringify(body));
     }
 
     /**
