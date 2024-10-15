@@ -771,7 +771,7 @@ class Response {
      * @returns {Boolean} Boolean
      */
     html(body) {
-        return this.header('content-type', 'text/html', true).send(JSON.stringify(body));
+        return this.header('content-type', 'text/html', true).send(body);
     }
 
     /**
