@@ -1,6 +1,6 @@
 {
     "name": "@kikiutils/hyper-express",
-    "version": "6.19.2",
+    "version": "6.19.3",
     "description": "High performance Node.js webserver with a simple-to-use API powered by uWebsockets.js under the hood.",
     "license": "MIT",
     "author": "Kartik Kumar",
