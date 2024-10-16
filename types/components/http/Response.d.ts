@@ -235,6 +235,8 @@ export class Response<Locals = DefaultResponseLocals> extends Writable {
      */
     get write_offset(): number;
 
+    get sent(): boolean;
+
     /**
      * Upgrade socket context for upgrade requests.
      * @returns {uWebsockets.ux_socket_context}
