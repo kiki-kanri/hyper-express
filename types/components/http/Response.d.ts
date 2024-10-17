@@ -165,6 +165,15 @@ export class Response<Locals = DefaultResponseLocals> extends Writable {
     html(body: string): boolean;
 
     /**
+     * This method is an alias of send() method except it automatically sets
+     * svg+xml as the response content type and sends provided html response body.
+     *
+     * @param {String} body
+     * @returns {Boolean} Boolean
+     */
+    svg(body: string): boolean;
+
+    /**
      * This method is an alias of send() method except it sends the file at specified path.
      * This method automatically writes the appropriate content-type header if one has not been specified yet.
      * This method also maintains its own cache pool in memory allowing for fast performance.

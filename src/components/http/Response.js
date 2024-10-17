@@ -775,6 +775,17 @@ class Response {
     }
 
     /**
+     * This method is an alias of send() method except it automatically sets
+     * svg+xml as the response content type and sends provided html response body.
+     *
+     * @param {String} body
+     * @returns {Boolean} Boolean
+     */
+    svg(body) {
+        return this.header('content-type', 'image/svg+xml', true).send(body);
+    }
+
+    /**
      * @private
      * Sends file content with appropriate content-type header based on file extension from LiveFile.
      *
