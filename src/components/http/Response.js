@@ -21,7 +21,6 @@ class Response {
     _corked = false;
     _streaming = false;
     _middleware_cursor;
-    _sent = false;
     _wrapped_request = null;
     _upgrade_socket = null;
     _raw_response = null;
@@ -486,7 +485,6 @@ class Response {
      * @returns {Response}
      */
     send(body, close_connection) {
-        this._sent = true;
         // Ensure response connection is still active
         if (!this.completed) {
             // If this request has a writable stream with some data in it, we must schedule this send() as the last chunk after which the stream will be flushed
@@ -918,10 +916,6 @@ class Response {
      */
     get upgrade_socket() {
         return this._upgrade_socket;
-    }
-
-    get sent() {
-        return this._sent;
     }
 
     /**
